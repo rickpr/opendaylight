@@ -1,6 +1,6 @@
 # Opendaylight
 
-This gem is made as a ruby wrapper for OpenDaylight's FlowProgrammer api
+This gem is made as a ruby wrapper for API's FlowProgrammer api
 
 ## Installation
 
@@ -26,11 +26,11 @@ Configure with an initializer in config/initializers as follows:
       config.url = "http://yourserver.com:port/"
     end
 
-Then make a call to Opendaylight's OpenDaylight.makeflow:
+Then make a call to Opendaylight's API.makeflow:
 
 For example:
 
-    Opendaylight::OpenDaylight.makeflow(id: "00:00:00:00:00:00:00:02", name: "flow1", actions: "DROP")
+    Opendaylight::API.makeflow(id: "00:00:00:00:00:00:00:02", name: "flow1", actions: "DROP")
 
 Here are the possible arguments for makeflow. All the arguments default to nil unless otherwise specified:
 
@@ -93,7 +93,7 @@ SW_PATH
 
 To get your topology, use Opendaylight.topology:
 
-    Opendaylight::OpenDaylight.topology
+    Opendaylight::API.topology
 
 This returns a hash of all the edges (links). The hash is organized as follows (I have capitalized things that will come back as variables):
 
