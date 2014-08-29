@@ -91,9 +91,13 @@ SW_PATH
 
 ##Topology
 
-To get your topology, use Opendaylight.topology:
+To get your topology, use API.topology:
 
     Opendaylight::API.topology
+
+For a list of hosts, use API.hostTracker:
+
+    Opendaylight::API.hostTracker
 
 This returns a hash of all the edges (links). The hash is organized as follows (I have capitalized things that will come back as variables):
 
