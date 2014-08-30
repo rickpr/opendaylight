@@ -95,10 +95,6 @@ To get your topology, use API.topology:
 
     Opendaylight::API.topology
 
-For a list of hosts, use API.hostTracker:
-
-    Opendaylight::API.hostTracker
-
 This returns a hash of all the edges (links). The hash is organized as follows (I have capitalized things that will come back as variables):
 
     "edgeProperties"=>[{
@@ -141,6 +137,24 @@ This returns a hash of all the edges (links). The hash is organized as follows (
             ....
         }
     }]
+
+For a list of hosts, use API.hostTracker:
+
+    Opendaylight::API.hostTracker
+
+To list all flows, use listFlows:
+
+    Opendaylight::API.listFlows
+
+For statistics, use statistics:
+
+    Opendaylight::API.statistics #Optional statistics("node") or statistics("port")
+
+Defaults to flow statistics.
+
+TODO:
+DRY up code by adding an "options" method.
+Finish covering the API.
 
 ## Contributing
 
