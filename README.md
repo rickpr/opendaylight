@@ -153,7 +153,8 @@ For statistics, use statistics:
 Defaults to flow statistics.
 
 TODO:
-DRY up code by adding an "options" method.
+DRY up code by adding "options" and "auth" methods.
+Make the code prettier by splitting into files.
 Finish covering the API.
 
 ## Contributing
