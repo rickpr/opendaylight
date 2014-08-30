@@ -1,4 +1,5 @@
 require "opendaylight/version"
+require "httparty"
 
 module Opendaylight
     class Configuration
