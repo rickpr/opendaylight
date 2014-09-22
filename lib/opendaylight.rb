@@ -73,6 +73,11 @@ module Opendaylight
       HTTParty.get("#{url}controller/nb/v2/statistics/#{containerName}/#{stats}", :basic_auth => auth)
     end
 
+    def self.hostTracker(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
+      auth = {username: username, password: password}
+      HTTParty.get("#{url}controller/nb/v2/hosttracker/#{containerName}/hosts/active")
+    end
+
     def username
       Opendaylight.configuration.username
     end
