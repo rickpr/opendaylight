@@ -49,7 +49,7 @@ module Opendaylight
 
     def self.build_options(tpSrc: nil, protocol: "6", vlanId: nil, id: nil, type: "OF", vlanPriority: nil, idleTimeout: nil, priority: nil, ingressPort: nil, tosBits: nil, name: nil, hardTimeout: nil, dlDst: nil, installInHW: "true", etherType: "0x800", actions: nil, cookie: nil, dlSrc: nil, nwSrc: nil, nwDst: nil, tpDst: nil, username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
       auth = {username: username, password: password}
-      options = url: url,
+      options = { url: url,
         containerName: containerName,
         type: type,
         id: id,
@@ -81,7 +81,7 @@ module Opendaylight
           "tpDst" => tpDst
           }.to_json,
         basic_auth: auth
-      }
+      } }
     end
 
   Opendaylight.configure
