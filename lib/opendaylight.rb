@@ -2,7 +2,7 @@ require "opendaylight/version"
 require "httparty"
 
 module Opendaylight
-    class Configuration
+  class Configuration
     attr_accessor :username, :password, :url
     def initialize
       username = nil
@@ -21,7 +21,33 @@ module Opendaylight
   end
 
   class API
-    def self.makeflow(tpSrc: nil, protocol: "6", vlanId: nil, id: nil, type: "OF", vlanPriority: nil, idleTimeout: nil, priority: nil, ingressPort: nil, tosBits: nil, name: nil, hardTimeout: nil, dlDst: nil, installInHW: "true", etherType: "0x800", actions: nil, cookie: nil, dlSrc: nil, nwSrc: nil, nwDst: nil, tpDst: nil, username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
+
+    def self.makeflow *params
+      options = build_options *params
+      HTTParty.put("#{url}controller/nb/v2/flowprogrammer/#{containerName}/node/#{type}/#{id}/staticFlow/#{name}",options)
+    end
+
+    def self.topology(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
+        auth = {username: username, password: password}
+        HTTParty.get("#{url}controller/nb/v2/topology/#{containerName}", basic_auth: auth)
+    end
+
+    def self.hostTracker(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
+        auth = {username: username, password: password}
+        HTTParty.get("#{url}controller/nb/v2/hosttracker/#{containerName}/hosts/active", basic_auth: auth)
+    end
+
+    def self.listFlows(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
+        auth = {username: username, password: password}
+        HTTParty.get("#{url}controller/nb/v2/flowprogrammer/#{containerName}", basic_auth: auth)
+    end
+
+    def self.statistics(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default", stats: "flow")
+      auth = {username: username, password: password}
+      HTTParty.get("#{url}controller/nb/v2/statistics/#{containerName}/#{stats}", basic_auth: auth)
+    end
+
+    def self.build_options(tpSrc: nil, protocol: "6", vlanId: nil, id: nil, type: "OF", vlanPriority: nil, idleTimeout: nil, priority: nil, ingressPort: nil, tosBits: nil, name: nil, hardTimeout: nil, dlDst: nil, installInHW: "true", etherType: "0x800", actions: nil, cookie: nil, dlSrc: nil, nwSrc: nil, nwDst: nil, tpDst: nil, username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
       auth = {username: username, password: password}
       options = {
         headers: {"Content-Type" => "application/json"},
@@ -52,25 +78,6 @@ module Opendaylight
           }.to_json,
         basic_auth: auth
       }
-      HTTParty.put("#{url}controller/nb/v2/flowprogrammer/#{containerName}/node/#{type}/#{id}/staticFlow/#{name}",options)
-    end
-    def self.topology(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
-        auth = {username: username, password: password}
-        HTTParty.get("#{url}controller/nb/v2/topology/#{containerName}", :basic_auth => auth)
-    end
-    def self.hostTracker(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
-        auth = {username: username, password: password}
-        HTTParty.get("#{url}controller/nb/v2/hosttracker/#{containerName}/hosts/active", :basic_auth => auth)
-    end
-
-    def self.listFlows(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
-        auth = {username: username, password: password}
-        HTTParty.get("#{url}controller/nb/v2/flowprogrammer/#{containerName}", :basic_auth => auth)
-    end
-
-    def self.statistics(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default", stats: "flow")
-      auth = {username: username, password: password}
-      HTTParty.get("#{url}controller/nb/v2/statistics/#{containerName}/#{stats}", :basic_auth => auth)
     end
 
     def username
@@ -84,6 +91,9 @@ module Opendaylight
     def url
       Opendaylight.configuration.url
     end
+
   end
+
   Opendaylight.configure
+
 end
