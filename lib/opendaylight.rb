@@ -22,9 +22,10 @@ module Opendaylight
 
   class API
 
-    def self.makeflow **params
-      options = build_options **params
-      HTTParty.put("#{**params[:url]}controller/nb/v2/flowprogrammer/#{**params[:containerName]}/node/#{**params[:type]}/#{**params[:id]}/staticFlow/#{**params[:name]}",options)
+    def self.makeflow **args
+      params = **args
+      options = build_options params
+      HTTParty.put("#{params[:url]}controller/nb/v2/flowprogrammer/#{params[:containerName]}/node/#{params[:type]}/#{params[:id]}/staticFlow/#{params[:name]}",options)
     end
 
     def self.topology(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
