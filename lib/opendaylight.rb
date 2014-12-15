@@ -24,7 +24,7 @@ module Opendaylight
 
     def self.makeflow **params
       options = build_options params
-      HTTParty.put("#{params[:url]}controller/nb/v2/flowprogrammer/#{params[:containerName]}/node/#{params[:type]}/#{params[:id]}/staticFlow/#{params[:name]}",options)
+      HTTParty.put("#{options[:url]}controller/nb/v2/flowprogrammer/#{options[:containerName]}/node/#{options[:type]}/#{options[:id]}/staticFlow/#{options[:name]}",options[:request])
     end
 
     def self.topology(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
@@ -49,8 +49,12 @@ module Opendaylight
 
     def self.build_options(tpSrc: nil, protocol: "6", vlanId: nil, id: nil, type: "OF", vlanPriority: nil, idleTimeout: nil, priority: nil, ingressPort: nil, tosBits: nil, name: nil, hardTimeout: nil, dlDst: nil, installInHW: "true", etherType: "0x800", actions: nil, cookie: nil, dlSrc: nil, nwSrc: nil, nwDst: nil, tpDst: nil, username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
       auth = {username: username, password: password}
-      options = {
-        headers: {"Content-Type" => "application/json"},
+      options = url: url,
+        containerName: containerName,
+        type: type,
+        id: id,
+        name: name,
+        request: { headers: {"Content-Type" => "application/json"},
         body: {
           "tpSrc" => tpSrc,
           "protocol" => protocol,
