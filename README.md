@@ -32,6 +32,10 @@ For example:
 
     Opendaylight::API.makeflow(id: "00:00:00:00:00:00:00:02", name: "flow1", actions: "DROP")
 
+API.deleteflow works exactly the same way, except you do not need to specify an action:
+
+    Opendaylight::API.deleteflow(id: "00:00:00:00:00:00:00:02", name: "flow1")
+
 Here are the possible arguments for makeflow. All the arguments default to nil unless otherwise specified:
 
     #Server information
@@ -64,30 +68,31 @@ Here are the possible arguments for makeflow. All the arguments default to nil u
 
 
 ## OpenDaylight Actions for the actions field
-CONTROLLER
-DROP
-ENQUEUE
-FLOOD
-FLOOD_ALL
-HW_PATH
-INTERFACE
-LOOPBACK
-OUTPUT
-POP_VLAN
-PUSH_VLAN
-SET_DL_DST
-SET_DL_SRC
-SET_DL_TYPE
-SET_NEXT_HOP
-SET_NW_DST
-SET_NW_SRC
-SET_NW_TOS
-SET_TP_DST
-SET_TP_SRC
-SET_VLAN_CFI
-SET_VLAN_ID
-SET_VLAN_PCP
-SW_PATH
+
+    CONTROLLER   # Send to controller
+    DROP         # Drop Packet
+    ENQUEUE      # Enqueue Packet
+    FLOOD        # Flood packet
+    FLOOD_ALL    # Flood to all available ports
+    HW_PATH      # Take hardware path
+    INTERFACE
+    LOOPBACK
+    OUTPUT       # Set output port
+    POP_VLAN     # Remove VLAN Header
+    PUSH _VLAN   # Add VLAN Header
+    SET_DL_DST   # Set MAC destination
+    SET_DL_SRC   # Set MAC Source
+    SET_DL_TYPE
+    SET_NEXT_HOP # Set static hop
+    SET_NW_DST   # Set IP Destination
+    SET_NW_SRC   # Set IP Source
+    SET_NW_TOS   # Set Type Of Service
+    SET_TP_DST   # Set TCP Destination Port
+    SET_TP_SRC   # Set TCP Source Port
+    SET_VLAN_CFI
+    SET_VLAN_ID  # Set VLAN ID
+    SET_VLAN_PCP
+    SW_PATH      # Take software path
 
 ##Topology
 
@@ -153,9 +158,11 @@ For statistics, use statistics:
 Defaults to flow statistics.
 
 TODO:
-DRY up code by adding "options" and "auth" methods.
 Make the code prettier by splitting into files.
 Finish covering the API.
+Build a better sample app.
+
+For the current working sample app, check out [Faizi](https://github.com/rickpr/faizi)
 
 ## Contributing
 
