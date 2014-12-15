@@ -22,8 +22,7 @@ module Opendaylight
 
   class API
 
-    def self.makeflow *args
-      params = *args.first
+    def self.makeflow **params
       options = build_options params
       HTTParty.put("#{params[:url]}controller/nb/v2/flowprogrammer/#{params[:containerName]}/node/#{params[:type]}/#{params[:id]}/staticFlow/#{params[:name]}",options)
     end
