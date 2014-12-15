@@ -27,6 +27,11 @@ module Opendaylight
       HTTParty.put("#{options[:url]}controller/nb/v2/flowprogrammer/#{options[:containerName]}/node/#{options[:type]}/#{options[:id]}/staticFlow/#{options[:name]}",options[:request])
     end
 
+    def self.deleteflow **params
+      options = build_options params
+      HTTParty.delete("#{options[:url]}controller/nb/v2/flowprogrammer/#{options[:containerName]}/node/#{options[:type]}/#{options[:id]}/staticFlow/#{options[:name]}",options[:request])
+    end
+
     def self.topology(username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
         auth = {username: username, password: password}
         HTTParty.get("#{url}controller/nb/v2/topology/#{containerName}", basic_auth: auth)
