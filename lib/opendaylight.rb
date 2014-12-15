@@ -80,15 +80,15 @@ module Opendaylight
       }
     end
 
-    def username
+    def self.username
       Opendaylight.configuration.username
     end
 
-    def password
+    def self.password
       Opendaylight.configuration.password
     end
 
-    def url
+    def self.url
       Opendaylight.configuration.url
     end
 
