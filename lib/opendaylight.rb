@@ -52,7 +52,7 @@ module Opendaylight
       HTTParty.get("#{url}controller/nb/v2/statistics/#{containerName}/#{stats}", basic_auth: auth)
     end
 
-    def self.build_options(tpSrc: nil, protocol: nil, vlanId: nil, id: nil, type: "OF", vlanPriority: nil, idleTimeout: nil, priority: 500, ingressPort: nil, tosBits: nil, name: nil, hardTimeout: nil, dlDst: nil, installInHW: "true", etherType: "0x800", actions: nil, cookie: nil, dlSrc: nil, nwSrc: nil, nwDst: nil, tpDst: nil, username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
+    def self.build_options(tpSrc: nil, protocol: nil, vlanId: nil, id: nil, type: "OF", vlanPriority: nil, idleTimeout: nil, priority: "500", ingressPort: nil, tosBits: nil, name: nil, hardTimeout: nil, dlDst: nil, installInHW: "true", etherType: "0x800", actions: nil, cookie: nil, dlSrc: nil, nwSrc: nil, nwDst: nil, tpDst: nil, username: Opendaylight.configuration.username, password: Opendaylight.configuration.password, url: Opendaylight.configuration.url, containerName: "default")
       auth = {username: username, password: password}
       options = { url: url,
         containerName: containerName,

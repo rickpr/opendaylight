@@ -47,6 +47,7 @@ Here are the possible arguments for makeflow. All the arguments default to nil u
     id			#Node ID (usually MAC address) *REQUIRED*
     name		#Flow Name *REQUIRED*
     actions		#OpenDaylight OpenFlow Action *REQUIRED*
+    priority		#Flow Priority (default "500")
     ingressPort		#Layer 1 (physical) Source Port
     dlSrc		#Layer 2 (MAC address) source
     dlDst		#Layer 2 (MAC address) Destination
@@ -56,12 +57,11 @@ Here are the possible arguments for makeflow. All the arguments default to nil u
     tpDst		#Layer 4 (Network Socket Port) destination
     installInHW		#Make the flow installed and active (default "true")
     type		#Node Type (default "OF")
-    protocol		#IP Protocol Number (default "6")
+    protocol		#IP Protocol Number
     etherType		#Ethertype field (default "0x800")
     vlanId		#Virtual LAN ID
     vlanPriority	#Virtual LAN QoS Priotity
     idleTimeout		#Flow Idle Timeout
-    priority		#Flow Priority
     tosBits		#Type of Service Bits
     hardTimeout		#Flow Hard Timeout
     cookie		#Cookie enhancements
