@@ -1,7 +1,9 @@
 # Opendaylight
 
-This gem is made as a ruby wrapper for OpenDayligh's FlowProgrammer API
 [![Gem Version](https://badge.fury.io/rb/opendaylight.svg)](http://badge.fury.io/rb/opendaylight)
+
+This gem is made as a ruby wrapper for OpenDayligh's FlowProgrammer API
+
 ## Installation
 
 Add this line to your application's Gemfile:
