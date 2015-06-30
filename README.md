@@ -150,7 +150,7 @@ For a list of hosts, use API.hostTracker:
     Opendaylight::API.hostTracker
 
 For a list of nodes, use
-[API.nodes]{https://developer.cisco.com/media/XNCREST/switchmanager/resource_SwitchNorthbound.html#path__-containerName-_nodes.html}:
+[API.nodes](https://developer.cisco.com/media/XNCREST/switchmanager/resource_SwitchNorthbound.html#path__-containerName-_nodes.html):
 
     Opendaylight::API.nodes
 
