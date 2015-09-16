@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/opendaylight.svg)](http://badge.fury.io/rb/opendaylight)
 
-This gem is made as a ruby wrapper for OpenDayligh's FlowProgrammer API
+This gem is made as a ruby wrapper for OpenDaylight MD-SAL and AD-SAL APIs, including FlowProgrammer.
 
 ## Installation
 
