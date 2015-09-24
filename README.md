@@ -28,7 +28,7 @@ Configure with an initializer in config/initializers as follows:
       config.url = "http://yourserver.com:port/"
     end
 
-### Model-Driven Service Abstraction Layer (AD-SAL)
+### Model-Driven Service Abstraction Layer (MD-SAL)
 
 Consult the Yang UI from the DLux interfarce, and construct method calls similar to how they're structured in the UI:
 
