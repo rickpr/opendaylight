@@ -28,6 +28,24 @@ Configure with an initializer in config/initializers as follows:
       config.url = "http://yourserver.com:port/"
     end
 
+### Model-Driven Service Abstraction Layer (AD-SAL)
+
+Consult the Yang UI from the DLux interfarce, and construct method calls similar to how they're structured in the UI:
+
+    odl = Opendaylight::ModelDriven.new
+
+    data = %q| { "flow-node-inventory:flow": [ { "flow-node-inventory:id": "foobarbaz", "flow-node-inventory:match": { . . . |
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').create data
+    puts "result: " + result.class.to_s
+
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').flow("foobarbaz").resource
+    puts "result: " + JSON.pretty_generate JSON.parse(result.body)
+
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').flow("foobarbaz").delete
+    puts "result: " + result.class.to_s
+
+### Application-Driven Service Abstraction Layer (AD-SAL)
+
 Then make a call to Opendaylight's API.makeflow:
 
 For example:
