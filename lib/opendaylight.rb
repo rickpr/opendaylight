@@ -1,4 +1,5 @@
 require "opendaylight/version"
+require "opendaylight/model_driven"
 require "httparty"
 
 module Opendaylight
