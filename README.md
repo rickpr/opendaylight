@@ -30,17 +30,25 @@ Configure with an initializer in config/initializers as follows:
 
 ### Model-Driven Service Abstraction Layer (MD-SAL)
 
-Consult the Yang UI from the DLux interfarce, and construct method calls similar to how they're structured in the UI:
+Consult the Yang UI from the DLux interfarce, and construct method calls similar to how they're structured in that UI:
 
     odl = Opendaylight::ModelDriven.new
 
     data = %q| { "flow-node-inventory:flow": [ { "flow-node-inventory:id": "foobarbaz", "flow-node-inventory:match": { . . . |
+    # POST
     result = odl.inventory.config.nodes.node("openflow:1").table('0').create data
     puts "result: " + result.class.to_s
 
+    # GET
     result = odl.inventory.config.nodes.node("openflow:1").table('0').flow("foobarbaz").resource
     puts "result: " + JSON.pretty_generate JSON.parse(result.body)
 
+    data = %q| { "flow-node-inventory:flow": [ { "flow-node-inventory:id": "foobardee", "flow-node-inventory:match": { . . . |
+    # PUT
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').flow('foobardee').update data
+    puts "result: " + JSON.pretty_generate JSON.parse(result.body)
+
+    # DELETE
     result = odl.inventory.config.nodes.node("openflow:1").table('0').flow("foobarbaz").delete
     puts "result: " + result.class.to_s
 
