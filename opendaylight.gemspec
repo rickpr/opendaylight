@@ -6,8 +6,8 @@ require 'opendaylight/version'
 Gem::Specification.new do |spec|
   spec.name          = "opendaylight"
   spec.version       = Opendaylight::VERSION
-  spec.authors       = ["rickpr"]
-  spec.email         = ["fdisk@fdisk.co"]
+  spec.authors       = ["rickpr", "aburnheimer"]
+  spec.email         = ["fdisk@fdisk.co", "aburnheimer@gmail.com"]
   spec.summary       = "Ruby Wrapper for OpenDaylight"
   spec.description   = "Makes writing Ruby apps for OpenDaylight easy"
   spec.homepage      = "http://fdisk.co"
