@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/opendaylight.svg)](http://badge.fury.io/rb/opendaylight)
 
-This gem is made as a ruby wrapper for OpenDayligh's FlowProgrammer API
+This gem is made as a ruby wrapper for OpenDaylight MD-SAL and AD-SAL APIs, including FlowProgrammer.
 
 ## Installation
 
@@ -27,6 +27,32 @@ Configure with an initializer in config/initializers as follows:
       config.password = "your_password"
       config.url = "http://yourserver.com:port/"
     end
+
+### Model-Driven Service Abstraction Layer (MD-SAL)
+
+Consult the Yang UI from the DLux interfarce, and construct method calls similar to how they're structured in that UI:
+
+    odl = Opendaylight::ModelDriven.new
+
+    data = %q| { "flow-node-inventory:flow": [ { "flow-node-inventory:id": "foobarbaz", "flow-node-inventory:match": { . . . |
+    # POST
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').create data
+    puts "result: " + result.class.to_s
+
+    # GET
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').flow("foobarbaz").resource
+    puts "result: " + JSON.pretty_generate JSON.parse(result.body)
+
+    data = %q| { "flow-node-inventory:flow": [ { "flow-node-inventory:id": "foobardee", "flow-node-inventory:match": { . . . |
+    # PUT
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').flow('foobardee').update data
+    puts "result: " + JSON.pretty_generate JSON.parse(result.body)
+
+    # DELETE
+    result = odl.inventory.config.nodes.node("openflow:1").table('0').flow("foobarbaz").delete
+    puts "result: " + result.class.to_s
+
+### Application-Driven Service Abstraction Layer (AD-SAL)
 
 Then make a call to Opendaylight's API.makeflow:
 
